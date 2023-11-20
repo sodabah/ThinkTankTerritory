@@ -3,7 +3,7 @@ package zli.m223.controller;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
-// import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -26,7 +26,7 @@ import zli.m223.service.ApplicationUserService;
 
 @Path("/users")
 @Tag(name = "Users", description = "Handling of users")
-// @RolesAllowed({ "User", "Admin" })
+@RolesAllowed({ "User", "Admin" })
 public class ApplicationUserController {
   
   @Inject
@@ -59,7 +59,6 @@ public class ApplicationUserController {
     }  
 }
 
-  @POST
   @Path("/{id}")
   @DELETE
   @Operation(

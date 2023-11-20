@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotBlank;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -27,9 +28,11 @@ public class ApplicationUser {
   @Column (nullable = false)
   private String lastname;
 
+  @NotBlank
   @Column(nullable = false, unique = true)
   private String email;
 
+  @NotBlank
   @Column(nullable = false)
   private String password;
 
@@ -57,7 +60,7 @@ public class ApplicationUser {
   public String getLastname(){
     return lastname;
   }
-  
+
   public String getEmail() {
     return email;
   }
