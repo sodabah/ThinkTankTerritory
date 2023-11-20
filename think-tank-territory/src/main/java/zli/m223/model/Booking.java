@@ -1,8 +1,16 @@
 package zli.m223.model;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Booking {
@@ -20,6 +28,9 @@ public class Booking {
 
     @Column(nullable = false)
     private String bookingType;
+    
+     @Column(nullable = false)
+    private String status; 
 
     @OneToMany(mappedBy = "booking")
     private Set<BookingRoom> bookingRooms;
@@ -56,6 +67,14 @@ public class Booking {
         this.bookingType = bookingType;
     }
 
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public Set<BookingRoom> getBookingRooms() {
         return bookingRooms;
     }

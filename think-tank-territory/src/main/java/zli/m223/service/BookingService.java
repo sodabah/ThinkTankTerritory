@@ -1,6 +1,7 @@
 package zli.m223.service;
 
 import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -30,6 +31,15 @@ public class BookingService {
         return entityManager.merge(booking);
     }
 
+     @Transactional
+    public Booking updateBookingStatus(Long id, String status) {
+        Booking booking = entityManager.find(Booking.class, id);
+        if (booking != null) {
+            booking.setStatus(status);
+            entityManager.merge(booking);
+        }
+        return booking;
+    }
     public List<Booking> findAll(){
         var query = entityManager.createQuery("FROM Booking", Booking.class);
         return query.getResultList();

@@ -20,10 +20,10 @@ public class SessionService {
   ApplicationUserService applicationUserService;
 
   public Response authenticate(ApplicationUser user) {
-    Optional<ApplicationUser> principal = applicationUserService.findByEmail(user.getEmail());
+    Optional<ApplicationUser> loggedUser = applicationUserService.findByEmail(user.getEmail());
 
     try {
-      if (principal.isPresent() && principal.get().getPassword().equals(user.getPassword())) {
+      if (loggedUser.isPresent() && loggedUser.get().getPassword().equals(user.getPassword())) {
         String token = Jwt
             .issuer("https://zli.example.com/")
             .upn(user.getEmail())
@@ -31,8 +31,8 @@ public class SessionService {
             .expiresIn(Duration.ofHours(12))
             .sign();
         return Response
-            .ok(principal.get())
-            .cookie(new NewCookie("punchclock", token))
+            .ok(loggedUser.get())
+            .cookie(new NewCookie("thinkTankTerritory", token))
             .header("Authorization", "Bearer " + token)
             .build();
       }

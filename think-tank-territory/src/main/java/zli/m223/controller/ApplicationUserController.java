@@ -61,7 +61,6 @@ public class ApplicationUserController {
   
   @RolesAllowed("Admin")
   @Path("/{id}")
-
   @DELETE
   @Operation(
       summary = "Deletes an user.",
