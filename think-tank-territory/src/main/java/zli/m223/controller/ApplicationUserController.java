@@ -58,8 +58,10 @@ public class ApplicationUserController {
         return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
     }  
 }
-
+  
+  @RolesAllowed("Admin")
   @Path("/{id}")
+
   @DELETE
   @Operation(
       summary = "Deletes an user.",

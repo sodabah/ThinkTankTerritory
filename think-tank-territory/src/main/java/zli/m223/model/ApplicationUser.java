@@ -36,6 +36,9 @@ public class ApplicationUser {
   @Column(nullable = false)
   private String password;
 
+  @Column(nullable = false)
+  private String role;
+
   public Long getId() {
     return id;
   }
@@ -75,5 +78,13 @@ public class ApplicationUser {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getRole(){
+    return role;
+  }
+  
+  public void setRole(String role) {
+    this.role = role;
   }
 }

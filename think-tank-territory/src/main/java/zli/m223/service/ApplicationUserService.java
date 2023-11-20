@@ -6,11 +6,8 @@ import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
-import zli.m223.exceptions.DuplicateEmailException;
 import zli.m223.model.ApplicationUser;
 
 @ApplicationScoped
@@ -20,17 +17,13 @@ public class ApplicationUserService {
 
     @Transactional
     public ApplicationUser createUser(ApplicationUser user) {
-       try {
-        return entityManager.merge(user);
-       }catch (PersistenceException e){
-        if(e.getCause() instanceof ConstraintViolationException){
-            System.out.println(e.getMessage());
-            throw new DuplicateEmailException("A user with the given email already exists!");
-        }
-        throw e;
-       }
+    if (findAll().isEmpty()) { 
+        user.setRole("Admin");
+    } else {
+        user.setRole("User");
     }
-
+    return entityManager.merge(user);
+}
     @Transactional
     public void deleteUser(Long id) {
         var entity = entityManager.find(ApplicationUser.class, id);
