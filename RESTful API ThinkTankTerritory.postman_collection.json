@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "c121cc9f-410f-41c5-a08b-1c0ffe29e5f9",
+		"name": "RESTful API ThinkTankTerritory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17683824"
+	},
+	"item": [
+		{
+			"name": "Register_Authorization",
+			"item": [
+				{
+					"name": "register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"sodaba\",\r\n    \"lastname\":\"hamid\",\r\n    \"email\":\"sodaba@gmail.com\",\r\n    \"password\":\"lala\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization wrong password input",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"erika@example.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/session"
+					},
+					"response": []
+				},
+				{
+					"name": "wrong email input",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"erika@exAM.COM\",\r\n    \"password\":\"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/session"
+					},
+					"response": []
+				},
+				{
+					"name": "User authorized (admin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"erika@example.com\",\r\n    \"password\":\"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/session"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "buchungsverwaltung_admin",
+			"item": [
+				{
+					"name": "http://localhost:8080/bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc1MzIwLCJleHAiOjE3MDA2NjE3MjAsImp0aSI6IjdmMWVkYWFiLTQyNjAtNDUwMC1hZmEzLTQ2MTE3MWEwNmMzMSJ9.gpYksO2hl7aCONz-eT7nv_JRnwZEcpQ7CrdhVy5LodWRiwxU9i-YPzKtCed7S5eePCCFe2Wd6epWN_MgGvvRX_74LoAm7BHIRQf_ITqlBio21bLC7M-z_E2D44o1CwO7FLy4dyC1weXbBeNhe-xNmfkbr_wTK1fq30VliDH1rRwnHiypgpVl1Vmq2QDElhU0lOVFl2QkLrZarSQK-wZk-UiOsrPxp1BZIOu01iBWQ6bo3UEBL2aCrKqbgD-_GNKcfeC_m-aJKcRbAe89cFNEx2IlQIp-wMADdElwYdvXPqmzTK5uUx_0wjqZfJ6U9yQbsDMfYW9tt2cUnnd9i1uaNg",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin deletes bookings",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc1MzIwLCJleHAiOjE3MDA2NjE3MjAsImp0aSI6IjdmMWVkYWFiLTQyNjAtNDUwMC1hZmEzLTQ2MTE3MWEwNmMzMSJ9.gpYksO2hl7aCONz-eT7nv_JRnwZEcpQ7CrdhVy5LodWRiwxU9i-YPzKtCed7S5eePCCFe2Wd6epWN_MgGvvRX_74LoAm7BHIRQf_ITqlBio21bLC7M-z_E2D44o1CwO7FLy4dyC1weXbBeNhe-xNmfkbr_wTK1fq30VliDH1rRwnHiypgpVl1Vmq2QDElhU0lOVFl2QkLrZarSQK-wZk-UiOsrPxp1BZIOu01iBWQ6bo3UEBL2aCrKqbgD-_GNKcfeC_m-aJKcRbAe89cFNEx2IlQIp-wMADdElwYdvXPqmzTK5uUx_0wjqZfJ6U9yQbsDMfYW9tt2cUnnd9i1uaNg",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/bookings/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin brings changes booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc1MzIwLCJleHAiOjE3MDA2NjE3MjAsImp0aSI6IjdmMWVkYWFiLTQyNjAtNDUwMC1hZmEzLTQ2MTE3MWEwNmMzMSJ9.gpYksO2hl7aCONz-eT7nv_JRnwZEcpQ7CrdhVy5LodWRiwxU9i-YPzKtCed7S5eePCCFe2Wd6epWN_MgGvvRX_74LoAm7BHIRQf_ITqlBio21bLC7M-z_E2D44o1CwO7FLy4dyC1weXbBeNhe-xNmfkbr_wTK1fq30VliDH1rRwnHiypgpVl1Vmq2QDElhU0lOVFl2QkLrZarSQK-wZk-UiOsrPxp1BZIOu01iBWQ6bo3UEBL2aCrKqbgD-_GNKcfeC_m-aJKcRbAe89cFNEx2IlQIp-wMADdElwYdvXPqmzTK5uUx_0wjqZfJ6U9yQbsDMfYW9tt2cUnnd9i1uaNg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"user\": {\r\n            \"id\": 2,\r\n            \"firstname\": \"Erika\",\r\n            \"lastname\": \"Musterfrau\",\r\n            \"email\": \"erika@example.com\",\r\n            \"password\": \"password123\",\r\n            \"role\": \"Admin\"\r\n        },\r\n        \"bookingDate\": \"2023-11-21T14:20:54.771+00:00\",\r\n        \"bookingType\": \"Ganzertag\",\r\n        \"status\": \"Bestätigt\",\r\n        \"rooms\": [\r\n            {\r\n                \"id\": 2,\r\n                \"roomName\": \"Arbeitsplatz\",\r\n                \"description\": \"Ein ruhiger Arbeitsplatz\"\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/bookings/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin changes bookingstatus",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc1MzIwLCJleHAiOjE3MDA2NjE3MjAsImp0aSI6IjdmMWVkYWFiLTQyNjAtNDUwMC1hZmEzLTQ2MTE3MWEwNmMzMSJ9.gpYksO2hl7aCONz-eT7nv_JRnwZEcpQ7CrdhVy5LodWRiwxU9i-YPzKtCed7S5eePCCFe2Wd6epWN_MgGvvRX_74LoAm7BHIRQf_ITqlBio21bLC7M-z_E2D44o1CwO7FLy4dyC1weXbBeNhe-xNmfkbr_wTK1fq30VliDH1rRwnHiypgpVl1Vmq2QDElhU0lOVFl2QkLrZarSQK-wZk-UiOsrPxp1BZIOu01iBWQ6bo3UEBL2aCrKqbgD-_GNKcfeC_m-aJKcRbAe89cFNEx2IlQIp-wMADdElwYdvXPqmzTK5uUx_0wjqZfJ6U9yQbsDMfYW9tt2cUnnd9i1uaNg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Abgelehnt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/bookings/1/status"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "eigenenbuchungsverwaltung_mitglied",
+			"item": [
+				{
+					"name": "eigene buchungen aendern",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJtYXhAZXhhbXBsZS5jb20iLCJncm91cHMiOlsiVXNlciIsIkFkbWluIl0sImlhdCI6MTcwMDU3Nzc2MiwiZXhwIjoxNzAwNjY0MTYyLCJqdGkiOiI4Y2FkNDA0NC0xMGIxLTRmYzgtYjBmMS1kNjQ2MzEzODdiMmMifQ.TxvqvCYtyXX_dZOkoYjBLkZn0I5_j6MMJaeV3bH6xNqIlxmlSBelNBcznEnb_dfIbopLfF4GpMV40Qp4guCEv4KNfbWWBfftotr7mDl4RIxz8HayTuP6jjMmqLBIYse6BJQKvbNTnrj_aV6c1bFg7mirT71iSzzxeahZHVdIkti2etHJFkFEMqsMR-ohnLNHWnty3TOEc61HCppuldzTNVKR8jptUiC4ebllazzT4Ufl_16sKZhsDxpepvv31Bg6OxvqGFG2GlwXVqINkLovQaf8DfUANG42nXJtRhbLPY9BDlyc8PLttDwF3upFr6smqfjFyGSc6Wp9zOS6Fs__Jw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"user\": {\r\n            \"id\": 1,\r\n            \"firstname\": \"Max\",\r\n            \"lastname\": \"Mustermann\",\r\n            \"email\": \"max@example.com\",\r\n            \"password\": \"password123\",\r\n            \"role\": \"User\"\r\n        },\r\n        \"bookingDate\": \"2023-11-21T14:38:34.849+00:00\",\r\n        \"bookingType\": \"Halber Tag\",\r\n        \"status\": \"Abgelehnt\",\r\n        \"rooms\": [\r\n            {\r\n                \"id\": 1,\r\n                \"roomName\": \"Konferenzraum\",\r\n                \"description\": \"Ein großer Raum für Meetings und Konferenzen\"\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/bookings/1"
+					},
+					"response": []
+				},
+				{
+					"name": "eigene buchungen sehen",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJtYXhAZXhhbXBsZS5jb20iLCJncm91cHMiOlsiVXNlciIsIkFkbWluIl0sImlhdCI6MTcwMDU3Nzc2MiwiZXhwIjoxNzAwNjY0MTYyLCJqdGkiOiI4Y2FkNDA0NC0xMGIxLTRmYzgtYjBmMS1kNjQ2MzEzODdiMmMifQ.TxvqvCYtyXX_dZOkoYjBLkZn0I5_j6MMJaeV3bH6xNqIlxmlSBelNBcznEnb_dfIbopLfF4GpMV40Qp4guCEv4KNfbWWBfftotr7mDl4RIxz8HayTuP6jjMmqLBIYse6BJQKvbNTnrj_aV6c1bFg7mirT71iSzzxeahZHVdIkti2etHJFkFEMqsMR-ohnLNHWnty3TOEc61HCppuldzTNVKR8jptUiC4ebllazzT4Ufl_16sKZhsDxpepvv31Bg6OxvqGFG2GlwXVqINkLovQaf8DfUANG42nXJtRhbLPY9BDlyc8PLttDwF3upFr6smqfjFyGSc6Wp9zOS6Fs__Jw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"user\": {\r\n            \"id\": 1,\r\n            \"firstname\": \"Max\",\r\n            \"lastname\": \"Mustermann\",\r\n            \"email\": \"max@example.com\",\r\n            \"password\": \"password123\",\r\n            \"role\": \"User\"\r\n        },\r\n        \"bookingDate\": \"2023-11-21T14:38:34.849+00:00\",\r\n        \"bookingType\": \"Halber Tag\",\r\n        \"status\": \"Abgelehnt\",\r\n        \"rooms\": [\r\n            {\r\n                \"id\": 1,\r\n                \"roomName\": \"Konferenzraum\",\r\n                \"description\": \"Ein großer Raum für Meetings und Konferenzen\"\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "eigene buchungstatus aendern nicht erlaubt",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJtYXhAZXhhbXBsZS5jb20iLCJncm91cHMiOlsiVXNlciIsIkFkbWluIl0sImlhdCI6MTcwMDU3Nzc2MiwiZXhwIjoxNzAwNjY0MTYyLCJqdGkiOiI4Y2FkNDA0NC0xMGIxLTRmYzgtYjBmMS1kNjQ2MzEzODdiMmMifQ.TxvqvCYtyXX_dZOkoYjBLkZn0I5_j6MMJaeV3bH6xNqIlxmlSBelNBcznEnb_dfIbopLfF4GpMV40Qp4guCEv4KNfbWWBfftotr7mDl4RIxz8HayTuP6jjMmqLBIYse6BJQKvbNTnrj_aV6c1bFg7mirT71iSzzxeahZHVdIkti2etHJFkFEMqsMR-ohnLNHWnty3TOEc61HCppuldzTNVKR8jptUiC4ebllazzT4Ufl_16sKZhsDxpepvv31Bg6OxvqGFG2GlwXVqINkLovQaf8DfUANG42nXJtRhbLPY9BDlyc8PLttDwF3upFr6smqfjFyGSc6Wp9zOS6Fs__Jw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"bestaetigt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/bookings/1/status"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MitgliederVerwaltenAdmin",
+			"item": [
+				{
+					"name": "admin sees all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc4MjYzLCJleHAiOjE3MDA2NjQ2NjMsImp0aSI6ImM3YjZlNjk2LWFlMmQtNDM1YS1hZDM5LThkZjY3YTQzZTg0MiJ9.QrUcJOVS_JIpV9E-FW9yu-wMVt5UnK7kZ1sYIfex3Q6Z83ceCzufiYo7IGQu7NvOxhr0xHqdKO_n9aJYF7dU9-UKI6WRNaVLmsM3-mFWOP5emanu2Blus5vINzUEcMWCkKUm5dZFBI-rK-YEBm2Ja7KUivOHuh1rK5C-DnS1G4xBXgFro091X7JIbBfE5B_wLkVPyCbl0AlDaF3zV-wcOBkeCOyEI23_oxb2sDPZ9l2bsLhDTaZDFAQSxi-nrRSFERc4I6zAODGoGdWk4HNrYT4nT7W8balZ2q9aiCLfUUzrPi6Ej1hv0pszxUZ9C524Se-DaotbIKrLX-6BaAXlNg",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/users"
+					},
+					"response": []
+				},
+				{
+					"name": "admin changes user data",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc4MjYzLCJleHAiOjE3MDA2NjQ2NjMsImp0aSI6ImM3YjZlNjk2LWFlMmQtNDM1YS1hZDM5LThkZjY3YTQzZTg0MiJ9.QrUcJOVS_JIpV9E-FW9yu-wMVt5UnK7kZ1sYIfex3Q6Z83ceCzufiYo7IGQu7NvOxhr0xHqdKO_n9aJYF7dU9-UKI6WRNaVLmsM3-mFWOP5emanu2Blus5vINzUEcMWCkKUm5dZFBI-rK-YEBm2Ja7KUivOHuh1rK5C-DnS1G4xBXgFro091X7JIbBfE5B_wLkVPyCbl0AlDaF3zV-wcOBkeCOyEI23_oxb2sDPZ9l2bsLhDTaZDFAQSxi-nrRSFERc4I6zAODGoGdWk4HNrYT4nT7W8balZ2q9aiCLfUUzrPi6Ej1hv0pszxUZ9C524Se-DaotbIKrLX-6BaAXlNg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstname\": \"Sodaba\",\r\n        \"lastname\": \"hamid\",\r\n        \"email\": \"max@example.com\",\r\n        \"password\": \"password123\",\r\n        \"role\": \"User\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJlcmlrYUBleGFtcGxlLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiaWF0IjoxNzAwNTc4OTY0LCJleHAiOjE3MDA2NjUzNjQsImp0aSI6IjUyZjBjNzA5LTMyMTItNDRhNi1hNzhjLTliMzAwZTI2M2UwNyJ9.Ab3dQi_GmrD0pkO-v1mq2kfL4BQHopgX46QXIuWX69WD8HYvlru02CyuyinCeAkqoK8NFDMnfPapDzTPt9JmbEZnoXc73O-u4vT964I00_b9sd4E8tcM4n9hzkdNa9ezN8aUPm7kYkIQaxHuqptnhN5i02cR6nzSkryk2BpOEbvqAadzA1lf3ss85IBD2ZQkYUSQrYAxpQ0NMpxSFCPpfKDr0hLP_PJvUerVLPBjksFS-W-_-Ooda5IsQWlf8KIYRkIhhI6kW3dAKveHm-bNq9azUhu_vR-l5_ZSHcDZEGAQcfcVR8gcGYjZ0abjAkophn_qRvsgkptZ7ZhBgcBg1w",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/users/1",
+						"description": "Ich habe es im code geprüft aber könnte den fehler nicht finden."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

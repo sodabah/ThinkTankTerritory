@@ -28,6 +28,7 @@ public class ApplicationUserService {
     public ApplicationUser deleteUser(Long id) {
         var entity = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(entity);
+        return entity;
     }
 
     @Transactional
