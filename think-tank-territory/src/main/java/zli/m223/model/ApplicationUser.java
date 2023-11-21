@@ -39,7 +39,9 @@ public class ApplicationUser {
   @Column(nullable = false)
   private String role;
 
-  public Long getId() {
+  
+
+public Long getId() {
     return id;
   }
 

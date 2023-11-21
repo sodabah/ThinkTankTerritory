@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import zli.m223.model.Room;
@@ -33,6 +34,15 @@ public class RoomService {
 
     public List<Room> findAll() {
         var query = entityManager.createQuery("FROM Room", Room.class);
+        return query.getResultList();
+    }
+
+
+    public List<Room> findAvailableRooms() {
+        TypedQuery<Room> query = entityManager.createQuery(
+            "SELECT r FROM Room r WHERE r.id NOT IN (SELECT br.room.id FROM BookingRoom br WHERE br.booking.bookingDate = CURRENT_DATE)", 
+            Room.class
+        );
         return query.getResultList();
     }
 }

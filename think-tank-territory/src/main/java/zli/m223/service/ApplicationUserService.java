@@ -25,7 +25,7 @@ public class ApplicationUserService {
     return entityManager.merge(user);
 }
     @Transactional
-    public void deleteUser(Long id) {
+    public ApplicationUser deleteUser(Long id) {
         var entity = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(entity);
     }

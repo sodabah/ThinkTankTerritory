@@ -1,6 +1,12 @@
 package zli.m223.model;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Set;
 
 @Entity
@@ -16,8 +22,13 @@ public class Room {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "room")
-    private Set<BookingRoom> bookingRooms;
+    @ManyToMany(mappedBy = "rooms")
+    @JsonIgnoreProperties("rooms")
+    @Fetch(FetchMode.JOIN)
+    private Set<Booking> bookings;
+
+    public Room() {
+    }
 
     public Long getId() {
         return id;
@@ -43,11 +54,11 @@ public class Room {
         this.description = description;
     }
 
-    public Set<BookingRoom> getBookingRooms() {
-        return bookingRooms;
+    public Set<Booking> getbookings() {
+        return bookings;
     }
 
-    public void setBookingRooms(Set<BookingRoom> bookingRooms) {
-        this.bookingRooms = bookingRooms;
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

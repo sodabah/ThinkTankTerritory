@@ -13,10 +13,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import zli.m223.exceptions.RoomNotFoundException;
 import zli.m223.model.Room;
 import zli.m223.service.RoomService;
 
@@ -30,10 +32,7 @@ public class RoomController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(
-        summary = "Index all rooms.", 
-        description = "Returns a list of all rooms."
-    )
+    @Operation(summary = "Index all rooms.", description = "Returns a list of all rooms.")
     public List<Room> index() {
         return roomService.findAll();
     }
@@ -41,30 +40,34 @@ public class RoomController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(
-        summary = "Creates a new room.", 
-        description = "Creates a new room and returns the newly added room."
-    )
+    @Operation(summary = "Creates a new room.", description = "Creates a new room and returns the newly added room.")
     public Room create(Room room) {
-       return roomService.createRoom(room);
+        return roomService.createRoom(room);
     }
 
-    @Path("/{id}")
     @DELETE
-    @Operation(
-        summary = "Deletes a room.",
-        description = "Deletes a room by its id."
-    )
-    public void delete(@PathParam("id") Long id) {
-        roomService.deleteRoom(id);
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id) {
+        try {
+            roomService.deleteRoom(id);
+            return Response.ok().build();
+        } catch (RoomNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Raum nicht gefunden").build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Interner Serverfehler").build();
+        }
+    }
+
+    @GET
+    @Path("/available-rooms")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Room> getAvailableRooms() {
+        return roomService.findAvailableRooms();
     }
 
     @Path("/{id}")
     @PUT
-    @Operation(
-        summary = "Updates a room.",
-        description = "Updates a room by its id."
-    )
+    @Operation(summary = "Updates a room.", description = "Updates a room by its id.")
     public Room update(@PathParam("id") Long id, Room room) {
         return roomService.updateRoom(id, room);
     }

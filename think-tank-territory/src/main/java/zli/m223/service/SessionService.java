@@ -28,7 +28,7 @@ public class SessionService {
             .issuer("https://zli.example.com/")
             .upn(user.getEmail())
             .groups(new HashSet<>(Arrays.asList("User", "Admin")))
-            .expiresIn(Duration.ofHours(12))
+            .expiresIn(Duration.ofHours(24))
             .sign();
         return Response
             .ok(loggedUser.get())

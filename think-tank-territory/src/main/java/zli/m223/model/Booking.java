@@ -9,8 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Booking {
@@ -28,12 +34,15 @@ public class Booking {
 
     @Column(nullable = false)
     private String bookingType;
-    
-     @Column(nullable = false)
-    private String status; 
 
-    @OneToMany(mappedBy = "booking")
-    private Set<BookingRoom> bookingRooms;
+    @Column(nullable = false)
+    private String status;
+
+    @ManyToMany
+    @JoinTable(name = "booking_rooms", joinColumns = @JoinColumn(name = "booking_id"), inverseJoinColumns = @JoinColumn(name = "room_id"))
+    @JsonIgnoreProperties("bookings")
+    @Fetch(FetchMode.JOIN)
+    private Set<Room> rooms;
 
     public Long getId() {
         return id;
@@ -67,7 +76,6 @@ public class Booking {
         this.bookingType = bookingType;
     }
 
-    
     public String getStatus() {
         return status;
     }
@@ -75,11 +83,12 @@ public class Booking {
     public void setStatus(String status) {
         this.status = status;
     }
-    public Set<BookingRoom> getBookingRooms() {
-        return bookingRooms;
+
+    public Set<Room> getRooms() {
+        return rooms;
     }
 
-    public void setBookingRooms(Set<BookingRoom> bookingRooms) {
-        this.bookingRooms = bookingRooms;
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 }
